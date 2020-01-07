@@ -1,0 +1,28 @@
+.chat-main
+  .main-header
+    .main-header__left-box
+      .main-header__left-box__current-group
+        %p techcamp
+    .main-header__left-box__member-list
+      %p Member : daiki
+    .main-header__edit-btn
+      = link_to "#" do
+        Edit
+  .messages
+    .message
+      .message__upper-info
+        .message__upper-info__talker
+          %p daiki
+        .message__upper-info__date
+          %p 2020/01/06(Mom)22:55:22
+      .message__text
+        %P aaaaaaaaaaaaa
+  .form
+    .new_mesaage
+      .input-box
+        %input#message_content.input-box__text{name: "message[content]",placeholder: "type a message",type: "text"}/
+        %label{class: "input-box__image"}
+          = icon('fas', 'image')
+          %input{type: "file"}
+        .submit-btn
+          %p Send
