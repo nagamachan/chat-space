@@ -1,19 +1,21 @@
 .chat-side
- .side-header
-  .side-header__box
-   .side-header__box__user-name
-    = current_user.name
-   .side-header__box__menu
-    .side-header__box__menu__new-group
-     = link_to "#" do
-      = icon("fa","edit")
-    .side-header__box__menu__edit-user
-     = link_to edit_user_path(current_user) do
-      = icon("fa","cog", class: 'icon')
+  .side-header
+    .side-header__box
+      .side-header__box__user-name
+        = current_user.name
+      .side-header__box__menu
+        .side-header__box__menu__new-group
+          = link_to new_group_path do
+            = icon("fa","edit",)
+        .side-header__box__menu__edit-user
+          = link_to edit_user_path(current_user) do
+            = icon("fa","cog", class: 'icon')
 
- .groups
-  .group
-   .group__group-name
-    %P techcamp
-   .group__latest-message
-    %p まだメッセージはありません
+  .groups
+    - current_user.groups.each do |group|
+      .group
+        = link_to '#' do
+          .group__group-name
+            = group.name
+          .group__latest-message
+            まだメッセージはありません
