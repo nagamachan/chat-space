@@ -2,27 +2,23 @@
   .main-header
     .main-header__left-box
       .main-header__left-box__current-group
-        %p techcamp
+        = @group.name
     .main-header__left-box__member-list
-      %p Member : daiki
+      Member:
+      .main-header__left-box__member-list_member-list
+        - @group.users.each do |user|
+          = user.name
     .main-header__edit-btn
-      = link_to "#" do
+      = link_to edit_group_path(@group) do
         Edit
   .messages
-    .message
-      .message__upper-info
-        .message__upper-info__talker
-          %p daiki
-        .message__upper-info__date
-          %p 2020/01/06(Mom)22:55:22
-      .message__text
-        %P aaaaaaaaaaaaa
+    = render @messages
+    
   .form
-    .new_mesaage
-      .input-box
-        %input#message_content.input-box__text{name: "message[content]",placeholder: "type a message",type: "text"}/
-        %label{class: "input-box__image"}
+    = form_for [@group, @message] do |f|
+      = f.text_field :content, class: 'input-box', placeholder: 'type a message'
+      .text
+        = f.label :image, class: "input-box__image" do
           = icon('fas', 'image')
-          %input{type: "file"}
-        .submit-btn
-          %p Send
+          = f.file_field :image, class: 'hidden'
+      = f.submit 'Send', class: 'submit-btn'
