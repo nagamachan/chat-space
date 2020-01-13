@@ -93,6 +93,7 @@ $(function(){
     }
     })
     .fail(function() {
+      alert("メッセージ送信に失敗しました");
     });
   };
   if (document.location.href.match(/\/groups\/\d+\/messages/)) {
